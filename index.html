@@ -11,80 +11,138 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: #f7f8fa;
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       padding: 16px;
     }
-    .card {
-      background: #ffffff;
+
+    /* ── Setup panel ── */
+    #setup-panel {
+      background: #fff;
       border-radius: 16px;
       padding: 24px;
-      width: 100%;
-      max-width: 400px;
+      max-width: 420px;
+      margin: 0 auto;
       box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     }
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid #f0f0f0;
+    #setup-panel h2 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    #setup-panel p  { font-size: 13px; color: #888; margin-bottom: 20px; }
+
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 12px; color: #666; margin-bottom: 5px; font-weight: 500; }
+    .form-group select, .form-group input {
+      width: 100%; padding: 9px 12px; border: 1px solid #e0e0e0;
+      border-radius: 8px; font-size: 14px; background: #fff;
+      color: #1a1a1a; appearance: none; cursor: pointer;
     }
-    .avatar {
-      width: 44px; height: 44px; border-radius: 50%;
-      background: #e8f0fe; display: flex; align-items: center;
-      justify-content: center; font-size: 16px; font-weight: 600;
-      color: #1a73e8; flex-shrink: 0;
+    .form-group select:focus { outline: none; border-color: #1a73e8; }
+
+    /* ── Card panel ── */
+    #card-panel { display: none; max-width: 420px; margin: 0 auto; }
+    .card {
+      background: #fff; border-radius: 16px; padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 12px;
     }
+    .header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #f0f0f0; }
+    .avatar { width: 44px; height: 44px; border-radius: 50%; background: #e8f0fe; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; color: #1a73e8; flex-shrink: 0; }
     .header-text h2 { font-size: 16px; font-weight: 600; color: #1a1a1a; }
-    .header-text p { font-size: 12px; color: #888; margin-top: 2px; }
-    .photo-area {
-      width: 100%; height: 160px; border-radius: 10px;
-      background: #f5f5f5; margin-bottom: 16px; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-    }
+    .header-text p  { font-size: 12px; color: #888; margin-top: 2px; }
+    .photo-area { width: 100%; height: 160px; border-radius: 10px; background: #f5f5f5; margin-bottom: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
     .photo-area img { width: 100%; height: 100%; object-fit: cover; }
     .photo-placeholder { font-size: 13px; color: #bbb; }
-    .fields {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 10px; margin-bottom: 20px;
-    }
+    .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
     .field { background: #f7f8fa; border-radius: 8px; padding: 10px 12px; }
     .field.full { grid-column: 1 / -1; }
     .field-label { font-size: 11px; color: #999; margin-bottom: 3px; }
     .field-value { font-size: 14px; font-weight: 500; color: #1a1a1a; }
-    .message-preview {
-      background: #e8f5e9; border-radius: 10px; padding: 12px 14px;
-      margin-bottom: 20px; font-size: 13px; color: #2e7d32;
-      line-height: 1.6; white-space: pre-wrap; word-break: break-word;
-    }
-    .message-preview-label { font-size: 11px; color: #999; margin-bottom: 6px; }
-    .btn {
-      width: 100%; padding: 13px; border-radius: 10px; border: none;
-      font-size: 15px; font-weight: 600; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      gap: 8px; transition: opacity 0.15s, transform 0.1s; margin-bottom: 10px;
-    }
+    .msg-label { font-size: 11px; color: #999; margin-bottom: 6px; }
+    .msg-preview { background: #e8f5e9; border-radius: 10px; padding: 12px 14px; margin-bottom: 16px; font-size: 13px; color: #2e7d32; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+
+    /* ── Record selector ── */
+    .record-selector { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 12px; }
+    .record-selector label { font-size: 12px; color: #666; font-weight: 500; display: block; margin-bottom: 6px; }
+    .record-selector select { width: 100%; padding: 9px 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; background: #fff; }
+
+    /* ── Buttons ── */
+    .btn { width: 100%; padding: 13px; border-radius: 10px; border: none; font-size: 15px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: opacity 0.15s, transform 0.1s; margin-bottom: 10px; }
     .btn:active { transform: scale(0.98); }
-    .btn-whatsapp { background: #25D366; color: #ffffff; }
+    .btn-primary { background: #1a73e8; color: #fff; }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-whatsapp { background: #25D366; color: #fff; }
     .btn-whatsapp:hover { opacity: 0.92; }
     .btn-copy { background: #f0f0f0; color: #333; }
     .btn-copy:hover { background: #e5e5e5; }
     .btn-copy.copied { background: #e8f5e9; color: #2e7d32; }
-    .loading { text-align: center; color: #999; font-size: 14px; padding: 40px 0; }
-    .error {
-      background: #ffeaea; border-radius: 8px; padding: 12px;
-      color: #c62828; font-size: 13px; margin-bottom: 16px; line-height: 1.5;
-    }
+    .btn-back { background: none; border: 1px solid #e0e0e0; color: #666; font-size: 13px; padding: 8px; border-radius: 8px; cursor: pointer; margin-bottom: 12px; width: auto; }
+
+    .error { background: #ffeaea; border-radius: 8px; padding: 12px; color: #c62828; font-size: 13px; margin-bottom: 16px; line-height: 1.5; }
+    .loading-text { text-align: center; color: #888; font-size: 13px; padding: 16px 0; }
     .whatsapp-icon { width: 20px; height: 20px; fill: currentColor; }
+    .divider { border: none; border-top: 1px solid #f0f0f0; margin: 4px 0 14px; }
   </style>
 </head>
 <body>
-<div class="card">
-  <div id="loading" class="loading">⏳ Connecting to Lark Base...</div>
-  <div id="content" style="display:none;">
+
+<!-- STEP 1: Setup panel — choose Base + Table -->
+<div id="setup-panel">
+  <h2>⚙️ Setup</h2>
+  <p>Connect to your Lark Base to get started</p>
+
+  <div class="form-group">
+    <label>Base</label>
+    <select id="base-select" onchange="onBaseChange()">
+      <option value="">Loading bases...</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Table</label>
+    <select id="table-select" onchange="onTableChange()">
+      <option value="">Select a base first</option>
+    </select>
+  </div>
+
+  <hr class="divider">
+
+  <div class="form-group">
+    <label>Customer Name field</label>
+    <select id="field-name"><option value="">—</option></select>
+  </div>
+  <div class="form-group">
+    <label>Order Number field</label>
+    <select id="field-order"><option value="">—</option></select>
+  </div>
+  <div class="form-group">
+    <label>Submission # field</label>
+    <select id="field-sub"><option value="">—</option></select>
+  </div>
+  <div class="form-group">
+    <label>Service Level field</label>
+    <select id="field-service"><option value="">—</option></select>
+  </div>
+  <div class="form-group">
+    <label># of Cards field</label>
+    <select id="field-cards"><option value="">—</option></select>
+  </div>
+  <div class="form-group">
+    <label>Photo field (attachment)</label>
+    <select id="field-photo"><option value="">—</option></select>
+  </div>
+
+  <div id="setup-error"></div>
+  <button class="btn btn-primary" onclick="confirmSetup()">Confirm →</button>
+</div>
+
+<!-- STEP 2: Record picker + card -->
+<div id="card-panel">
+  <button class="btn-back" onclick="goBack()">← Back to settings</button>
+
+  <div class="record-selector">
+    <label>Select a customer record</label>
+    <select id="record-select" onchange="loadSelectedRecord()">
+      <option value="">Loading records...</option>
+    </select>
+  </div>
+
+  <div class="card">
     <div class="header">
       <div class="avatar" id="avatar">?</div>
       <div class="header-text">
@@ -96,151 +154,235 @@
       <span class="photo-placeholder">No photo attached</span>
     </div>
     <div class="fields">
-      <div class="field">
-        <div class="field-label">Service level</div>
-        <div class="field-value" id="service-level">—</div>
-      </div>
-      <div class="field">
-        <div class="field-label"># of cards</div>
-        <div class="field-value" id="num-cards">—</div>
-      </div>
-      <div class="field full">
-        <div class="field-label">Submission #</div>
-        <div class="field-value" id="submission-num">—</div>
-      </div>
+      <div class="field"><div class="field-label">Service level</div><div class="field-value" id="service-level">—</div></div>
+      <div class="field"><div class="field-label"># of cards</div><div class="field-value" id="num-cards">—</div></div>
+      <div class="field full"><div class="field-label">Submission #</div><div class="field-value" id="submission-num">—</div></div>
     </div>
-    <div class="message-preview-label">WhatsApp message preview</div>
-    <div class="message-preview" id="message-preview">—</div>
-    <div id="error-area"></div>
+    <div class="msg-label">WhatsApp message preview</div>
+    <div class="msg-preview" id="message-preview">Select a record above</div>
+    <div id="card-error"></div>
     <button class="btn btn-whatsapp" onclick="sendToWhatsApp()">
       <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Open WhatsApp
     </button>
-    <button class="btn btn-copy" id="copy-btn" onclick="copyMessage()">
-      📋 Copy message text
-    </button>
+    <button class="btn btn-copy" id="copy-btn" onclick="copyMessage()">📋 Copy message text</button>
   </div>
 </div>
 
 <script>
+const bitable = window.bitable;
+let currentTable = null;
+let allRecords = [];
 let messageText = '';
-let bt = null;
+let config = {};
 
-function initials(name) {
-  if (!name) return '?';
-  return name.trim().split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
-}
-
-function buildMessage(d) {
-  return `📋 *${d.customerName}*\nOrder #: ${d.orderNumber}\nSubmission #: ${d.submissionNum}\nService: ${d.serviceLevel}\nCards: ${d.numCards}`;
-}
-
+// ── helpers ──
 function getText(val) {
-  if (!val) return '—';
-  if (typeof val === 'string') return val;
+  if (val === null || val === undefined) return '—';
+  if (typeof val === 'string') return val || '—';
   if (typeof val === 'number') return String(val);
   if (Array.isArray(val)) {
-    return val.map(v => {
-      if (typeof v === 'string') return v;
-      if (v && v.text) return v.text;
-      if (v && v.name) return v.name;
-      return '';
-    }).join('');
+    const s = val.map(v => (v && v.text) ? v.text : (v && v.name) ? v.name : typeof v === 'string' ? v : '').join('');
+    return s || '—';
   }
   if (val.text) return val.text;
-  if (val.value) return String(val.value);
-  return String(val);
+  if (val.value !== undefined) return String(val.value);
+  return '—';
 }
 
-function showError(msg) {
-  document.getElementById('loading').style.display = 'none';
-  document.getElementById('error-area').innerHTML = `<div class="error">${msg}</div>`;
-  document.getElementById('content').style.display = 'block';
+function initials(name) {
+  if (!name || name === '—') return '?';
+  return name.trim().split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
 }
 
-async function loadRecord() {
+function populateSelect(id, items, valueFn, labelFn, defaultLabel) {
+  const sel = document.getElementById(id);
+  sel.innerHTML = `<option value="">${defaultLabel}</option>`;
+  items.forEach(item => {
+    const opt = document.createElement('option');
+    opt.value = valueFn(item);
+    opt.textContent = labelFn(item);
+    sel.appendChild(opt);
+  });
+}
+
+// ── INIT ──
+async function init() {
   try {
-    // Wait for SDK to be ready
-    bt = window.bitable;
-    if (!bt) {
-      throw new Error('Lark SDK not found. Make sure this extension is opened inside a Lark Base, not standalone.');
+    if (!bitable) throw new Error('Lark SDK not available');
+    const bases = await bitable.base.getBaseMetaList();
+    populateSelect('base-select', bases, b => b.baseToken, b => b.name, 'Select a Base...');
+    // Auto-select if only one
+    if (bases.length === 1) {
+      document.getElementById('base-select').value = bases[0].baseToken;
+      await onBaseChange();
     }
+  } catch(e) {
+    document.getElementById('setup-error').innerHTML = `<div class="error">SDK error: ${e.message}</div>`;
+  }
+}
 
-    document.getElementById('loading').textContent = '🔄 Loading record...';
-
-    const table = await bt.base.getActiveTable();
-    const selection = await bt.base.getSelection();
-
-    if (!selection || !selection.recordId) {
-      showError('⚠️ No record selected.<br><br>Please click on a customer record in your Base first, then open this extension.');
-      return;
+async function onBaseChange() {
+  const baseToken = document.getElementById('base-select').value;
+  if (!baseToken) return;
+  try {
+    const base = await bitable.base.getBaseById(baseToken);
+    const tables = await base.getTableMetaList();
+    populateSelect('table-select', tables, t => t.id, t => t.name, 'Select a Table...');
+    // Auto-select if only one
+    if (tables.length === 1) {
+      document.getElementById('table-select').value = tables[0].id;
+      await onTableChange();
     }
+  } catch(e) {
+    console.error(e);
+  }
+}
 
-    const record = await table.getRecordById(selection.recordId);
-    const fields = record.fields;
+async function onTableChange() {
+  const baseToken = document.getElementById('base-select').value;
+  const tableId   = document.getElementById('table-select').value;
+  if (!baseToken || !tableId) return;
+  try {
+    const base = await bitable.base.getBaseById(baseToken);
+    currentTable = await base.getTableById(tableId);
+    const fieldMeta = await currentTable.getFieldMetaList();
 
-    const customerName = getText(fields['Customer Name']);
-    const orderNumber  = getText(fields['Order Number']);
-    const submissionNum = getText(fields['Submission #']);
-    const serviceLevel = getText(fields['Service Level']);
-    const numCards     = getText(fields['# of cards']);
+    const fieldSelects = ['field-name','field-order','field-sub','field-service','field-cards','field-photo'];
+    fieldSelects.forEach(id => {
+      populateSelect(id, fieldMeta, f => f.name, f => f.name, '— select field —');
+    });
 
-    document.getElementById('avatar').textContent = initials(customerName);
-    document.getElementById('customer-name').textContent = customerName;
-    document.getElementById('order-sub').textContent = `Order #${orderNumber} · Sub #${submissionNum}`;
-    document.getElementById('service-level').textContent = serviceLevel;
-    document.getElementById('num-cards').textContent = numCards;
-    document.getElementById('submission-num').textContent = submissionNum;
+    // Auto-match by name
+    const autoMatch = {
+      'field-name':    ['Customer Name','Name','customer name'],
+      'field-order':   ['Order Number','Order','order number'],
+      'field-sub':     ['Submission #','Submission Number','Sub #'],
+      'field-service': ['Service Level','Service','service level'],
+      'field-cards':   ['# of cards','Cards','Num Cards','# of Cards'],
+      'field-photo':   ['Card Photo','Photo','photo','card photo'],
+    };
+    fieldMeta.forEach(f => {
+      Object.entries(autoMatch).forEach(([selId, names]) => {
+        if (names.map(n=>n.toLowerCase()).includes(f.name.toLowerCase())) {
+          document.getElementById(selId).value = f.name;
+        }
+      });
+    });
+  } catch(e) {
+    console.error(e);
+  }
+}
 
-    messageText = buildMessage({ customerName, orderNumber, submissionNum, serviceLevel, numCards });
-    document.getElementById('message-preview').textContent = messageText;
+async function confirmSetup() {
+  const baseToken = document.getElementById('base-select').value;
+  const tableId   = document.getElementById('table-select').value;
+  if (!baseToken || !tableId) {
+    document.getElementById('setup-error').innerHTML = '<div class="error">Please select a Base and Table.</div>';
+    return;
+  }
+  config = {
+    baseToken, tableId,
+    fieldName:    document.getElementById('field-name').value,
+    fieldOrder:   document.getElementById('field-order').value,
+    fieldSub:     document.getElementById('field-sub').value,
+    fieldService: document.getElementById('field-service').value,
+    fieldCards:   document.getElementById('field-cards').value,
+    fieldPhoto:   document.getElementById('field-photo').value,
+  };
+  document.getElementById('setup-panel').style.display = 'none';
+  document.getElementById('card-panel').style.display  = 'block';
+  await loadAllRecords();
+}
 
-    // Try load photo
-    const photoVal = fields['Card Photo'];
-    if (photoVal && Array.isArray(photoVal) && photoVal.length > 0) {
+function goBack() {
+  document.getElementById('setup-panel').style.display = 'block';
+  document.getElementById('card-panel').style.display  = 'none';
+}
+
+// ── Records ──
+async function loadAllRecords() {
+  try {
+    const base = await bitable.base.getBaseById(config.baseToken);
+    currentTable = await base.getTableById(config.tableId);
+    const recordIds = await currentTable.getRecordIdList();
+    allRecords = [];
+
+    // Load all records to build dropdown (batch for speed)
+    const sel = document.getElementById('record-select');
+    sel.innerHTML = '<option value="">— Choose a customer —</option>';
+
+    for (const id of recordIds) {
       try {
-        const token = photoVal[0].token || photoVal[0].file_token;
-        const url = await table.getAttachmentUrl(token);
-        const img = document.createElement('img');
-        img.src = url;
-        img.alt = 'Card photo';
-        const area = document.getElementById('photo-area');
-        area.innerHTML = '';
-        area.appendChild(img);
-      } catch(pe) {
-        console.warn('Photo load failed:', pe);
-      }
+        const rec = await currentTable.getRecordById(id);
+        const name = getText(rec.fields[config.fieldName]);
+        const order = getText(rec.fields[config.fieldOrder]);
+        allRecords.push({ id, fields: rec.fields, label: `${name} · Order #${order}` });
+        const opt = document.createElement('option');
+        opt.value = id;
+        opt.textContent = `${name} · Order #${order}`;
+        sel.appendChild(opt);
+      } catch(e) { /* skip bad record */ }
     }
+  } catch(e) {
+    document.getElementById('card-error').innerHTML = `<div class="error">Could not load records: ${e.message}</div>`;
+  }
+}
 
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('content').style.display = 'block';
+async function loadSelectedRecord() {
+  const recordId = document.getElementById('record-select').value;
+  if (!recordId) return;
+  const rec = allRecords.find(r => r.id === recordId);
+  if (!rec) return;
 
-  } catch(err) {
-    console.error(err);
-    showError('Could not load record.<br><br><strong>Make sure:</strong><br>1. This extension is added to your Submission Master Base<br>2. You clicked on a customer record first<br><br><small>' + err.message + '</small>');
+  const f = rec.fields;
+  const customerName  = getText(f[config.fieldName]);
+  const orderNumber   = getText(f[config.fieldOrder]);
+  const submissionNum = getText(f[config.fieldSub]);
+  const serviceLevel  = getText(f[config.fieldService]);
+  const numCards      = getText(f[config.fieldCards]);
+
+  document.getElementById('avatar').textContent        = initials(customerName);
+  document.getElementById('customer-name').textContent = customerName;
+  document.getElementById('order-sub').textContent     = `Order #${orderNumber} · Sub #${submissionNum}`;
+  document.getElementById('service-level').textContent = serviceLevel;
+  document.getElementById('num-cards').textContent     = numCards;
+  document.getElementById('submission-num').textContent= submissionNum;
+
+  messageText = `📋 *${customerName}*\nOrder #: ${orderNumber}\nSubmission #: ${submissionNum}\nService: ${serviceLevel}\nCards: ${numCards}`;
+  document.getElementById('message-preview').textContent = messageText;
+
+  // Photo
+  const photoVal = f[config.fieldPhoto];
+  const area = document.getElementById('photo-area');
+  area.innerHTML = '<span class="photo-placeholder">No photo attached</span>';
+  if (photoVal && Array.isArray(photoVal) && photoVal.length > 0) {
+    try {
+      const token = photoVal[0].token || photoVal[0].file_token;
+      const url = await currentTable.getAttachmentUrl(token);
+      const img = document.createElement('img');
+      img.src = url; img.alt = 'Card photo';
+      area.innerHTML = ''; area.appendChild(img);
+    } catch(e) { console.warn('Photo error:', e); }
   }
 }
 
 function sendToWhatsApp() {
-  const text = messageText || 'No record loaded';
-  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+  if (!messageText || messageText === 'Select a record above') return;
+  window.open('https://wa.me/?text=' + encodeURIComponent(messageText), '_blank');
 }
 
 function copyMessage() {
-  if (!messageText) return;
+  if (!messageText || messageText === 'Select a record above') return;
   navigator.clipboard.writeText(messageText).then(() => {
     const btn = document.getElementById('copy-btn');
     btn.textContent = '✅ Copied!';
     btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = '📋 Copy message text';
-      btn.classList.remove('copied');
-    }, 2000);
+    setTimeout(() => { btn.textContent = '📋 Copy message text'; btn.classList.remove('copied'); }, 2000);
   });
 }
 
-// Start
-loadRecord();
+init();
 </script>
 </body>
 </html>
