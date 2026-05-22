@@ -4,10 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Send to WhatsApp</title>
-  <script src="https://unpkg.com/@lark-base-open/js-sdk@0.3.7/dist/index.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@lark-base-open/js-sdk/dist/index.umd.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: #f7f8fa;
@@ -17,7 +16,6 @@
       justify-content: center;
       padding: 16px;
     }
-
     .card {
       background: #ffffff;
       border-radius: 16px;
@@ -26,7 +24,6 @@
       max-width: 400px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     }
-
     .header {
       display: flex;
       align-items: center;
@@ -35,167 +32,58 @@
       padding-bottom: 16px;
       border-bottom: 1px solid #f0f0f0;
     }
-
     .avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: #e8f0fe;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      font-weight: 600;
-      color: #1a73e8;
-      flex-shrink: 0;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: #e8f0fe; display: flex; align-items: center;
+      justify-content: center; font-size: 16px; font-weight: 600;
+      color: #1a73e8; flex-shrink: 0;
     }
-
-    .header-text h2 {
-      font-size: 16px;
-      font-weight: 600;
-      color: #1a1a1a;
-    }
-
-    .header-text p {
-      font-size: 12px;
-      color: #888;
-      margin-top: 2px;
-    }
-
+    .header-text h2 { font-size: 16px; font-weight: 600; color: #1a1a1a; }
+    .header-text p { font-size: 12px; color: #888; margin-top: 2px; }
     .photo-area {
-      width: 100%;
-      height: 160px;
-      border-radius: 10px;
-      background: #f5f5f5;
-      margin-bottom: 16px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 100%; height: 160px; border-radius: 10px;
+      background: #f5f5f5; margin-bottom: 16px; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
     }
-
-    .photo-area img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .photo-placeholder {
-      font-size: 13px;
-      color: #bbb;
-    }
-
+    .photo-area img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-placeholder { font-size: 13px; color: #bbb; }
     .fields {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 20px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px; margin-bottom: 20px;
     }
-
-    .field {
-      background: #f7f8fa;
-      border-radius: 8px;
-      padding: 10px 12px;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    .field-label {
-      font-size: 11px;
-      color: #999;
-      margin-bottom: 3px;
-    }
-
-    .field-value {
-      font-size: 14px;
-      font-weight: 500;
-      color: #1a1a1a;
-    }
-
+    .field { background: #f7f8fa; border-radius: 8px; padding: 10px 12px; }
+    .field.full { grid-column: 1 / -1; }
+    .field-label { font-size: 11px; color: #999; margin-bottom: 3px; }
+    .field-value { font-size: 14px; font-weight: 500; color: #1a1a1a; }
     .message-preview {
-      background: #e8f5e9;
-      border-radius: 10px;
-      padding: 12px 14px;
-      margin-bottom: 20px;
-      font-size: 13px;
-      color: #2e7d32;
-      line-height: 1.6;
-      white-space: pre-wrap;
-      word-break: break-word;
+      background: #e8f5e9; border-radius: 10px; padding: 12px 14px;
+      margin-bottom: 20px; font-size: 13px; color: #2e7d32;
+      line-height: 1.6; white-space: pre-wrap; word-break: break-word;
     }
-
-    .message-preview-label {
-      font-size: 11px;
-      color: #999;
-      margin-bottom: 6px;
-    }
-
+    .message-preview-label { font-size: 11px; color: #999; margin-bottom: 6px; }
     .btn {
-      width: 100%;
-      padding: 13px;
-      border-radius: 10px;
-      border: none;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: opacity 0.15s, transform 0.1s;
-      margin-bottom: 10px;
+      width: 100%; padding: 13px; border-radius: 10px; border: none;
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; transition: opacity 0.15s, transform 0.1s; margin-bottom: 10px;
     }
-
     .btn:active { transform: scale(0.98); }
-
-    .btn-whatsapp {
-      background: #25D366;
-      color: #ffffff;
-    }
-
+    .btn-whatsapp { background: #25D366; color: #ffffff; }
     .btn-whatsapp:hover { opacity: 0.92; }
-
-    .btn-copy {
-      background: #f0f0f0;
-      color: #333;
-    }
-
+    .btn-copy { background: #f0f0f0; color: #333; }
     .btn-copy:hover { background: #e5e5e5; }
-
-    .btn-copy.copied {
-      background: #e8f5e9;
-      color: #2e7d32;
-    }
-
-    .loading {
-      text-align: center;
-      color: #999;
-      font-size: 14px;
-      padding: 40px 0;
-    }
-
+    .btn-copy.copied { background: #e8f5e9; color: #2e7d32; }
+    .loading { text-align: center; color: #999; font-size: 14px; padding: 40px 0; }
     .error {
-      background: #ffeaea;
-      border-radius: 8px;
-      padding: 12px;
-      color: #c62828;
-      font-size: 13px;
-      margin-bottom: 16px;
+      background: #ffeaea; border-radius: 8px; padding: 12px;
+      color: #c62828; font-size: 13px; margin-bottom: 16px; line-height: 1.5;
     }
-
-    .whatsapp-icon {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-    }
+    .whatsapp-icon { width: 20px; height: 20px; fill: currentColor; }
   </style>
 </head>
 <body>
-
 <div class="card">
-  <div id="loading" class="loading">Loading record...</div>
+  <div id="loading" class="loading">⏳ Connecting to Lark Base...</div>
   <div id="content" style="display:none;">
     <div class="header">
       <div class="avatar" id="avatar">?</div>
@@ -204,11 +92,9 @@
         <p id="order-sub">—</p>
       </div>
     </div>
-
     <div class="photo-area" id="photo-area">
       <span class="photo-placeholder">No photo attached</span>
     </div>
-
     <div class="fields">
       <div class="field">
         <div class="field-label">Service level</div>
@@ -223,19 +109,13 @@
         <div class="field-value" id="submission-num">—</div>
       </div>
     </div>
-
     <div class="message-preview-label">WhatsApp message preview</div>
     <div class="message-preview" id="message-preview">—</div>
-
     <div id="error-area"></div>
-
     <button class="btn btn-whatsapp" onclick="sendToWhatsApp()">
-      <svg class="whatsapp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
+      <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Open WhatsApp
     </button>
-
     <button class="btn btn-copy" id="copy-btn" onclick="copyMessage()">
       📋 Copy message text
     </button>
@@ -243,115 +123,124 @@
 </div>
 
 <script>
-  const bitable = window.bitable;
-  let messageText = '';
+let messageText = '';
+let bt = null;
 
-  function initials(name) {
-    if (!name) return '?';
-    return name.trim().split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+function initials(name) {
+  if (!name) return '?';
+  return name.trim().split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+}
+
+function buildMessage(d) {
+  return `📋 *${d.customerName}*\nOrder #: ${d.orderNumber}\nSubmission #: ${d.submissionNum}\nService: ${d.serviceLevel}\nCards: ${d.numCards}`;
+}
+
+function getText(val) {
+  if (!val) return '—';
+  if (typeof val === 'string') return val;
+  if (typeof val === 'number') return String(val);
+  if (Array.isArray(val)) {
+    return val.map(v => {
+      if (typeof v === 'string') return v;
+      if (v && v.text) return v.text;
+      if (v && v.name) return v.name;
+      return '';
+    }).join('');
   }
+  if (val.text) return val.text;
+  if (val.value) return String(val.value);
+  return String(val);
+}
 
-  function buildMessage(data) {
-    return `📋 *${data.customerName}*
-Order #: ${data.orderNumber}
-Submission #: ${data.submissionNum}
-Service: ${data.serviceLevel}
-Cards: ${data.numCards}`;
-  }
+function showError(msg) {
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('error-area').innerHTML = `<div class="error">${msg}</div>`;
+  document.getElementById('content').style.display = 'block';
+}
 
-  async function loadRecord() {
-    try {
-      const table = await bitable.base.getActiveTable();
-      const selection = await bitable.base.getSelection();
-
-      if (!selection.recordId) {
-        showError('Please click a record first, then open this extension.');
-        return;
-      }
-
-      const record = await table.getRecordById(selection.recordId);
-      const fields = record.fields;
-
-      // Helper to safely get text value
-      const getText = (val) => {
-        if (!val) return '—';
-        if (typeof val === 'string') return val;
-        if (Array.isArray(val)) return val.map(v => v.text || v).join('');
-        if (val.text) return val.text;
-        return String(val);
-      };
-
-      const customerName = getText(fields['Customer Name']);
-      const orderNumber = getText(fields['Order Number']);
-      const submissionNum = getText(fields['Submission #']);
-      const serviceLevel = getText(fields['Service Level']);
-      const numCards = getText(fields['# of cards']);
-
-      // Update UI
-      document.getElementById('avatar').textContent = initials(customerName);
-      document.getElementById('customer-name').textContent = customerName;
-      document.getElementById('order-sub').textContent = `Order #${orderNumber} · Sub #${submissionNum}`;
-      document.getElementById('service-level').textContent = serviceLevel;
-      document.getElementById('num-cards').textContent = numCards;
-      document.getElementById('submission-num').textContent = submissionNum;
-
-      // Build message
-      messageText = buildMessage({ customerName, orderNumber, submissionNum, serviceLevel, numCards });
-      document.getElementById('message-preview').textContent = messageText;
-
-      // Try to load photo
-      const photoField = fields['Card Photo'];
-      if (photoField && Array.isArray(photoField) && photoField.length > 0) {
-        try {
-          const photoUrl = await table.getAttachmentUrl(photoField[0].token);
-          const img = document.createElement('img');
-          img.src = photoUrl;
-          img.alt = 'Card photo';
-          const photoArea = document.getElementById('photo-area');
-          photoArea.innerHTML = '';
-          photoArea.appendChild(img);
-        } catch (e) {
-          console.log('Photo load error:', e);
-        }
-      }
-
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('content').style.display = 'block';
-
-    } catch (err) {
-      showError('Could not load record. Make sure you have a record selected in your Base.\n\nError: ' + err.message);
+async function loadRecord() {
+  try {
+    // Wait for SDK to be ready
+    bt = window.bitable;
+    if (!bt) {
+      throw new Error('Lark SDK not found. Make sure this extension is opened inside a Lark Base, not standalone.');
     }
-  }
 
-  function showError(msg) {
+    document.getElementById('loading').textContent = '🔄 Loading record...';
+
+    const table = await bt.base.getActiveTable();
+    const selection = await bt.base.getSelection();
+
+    if (!selection || !selection.recordId) {
+      showError('⚠️ No record selected.<br><br>Please click on a customer record in your Base first, then open this extension.');
+      return;
+    }
+
+    const record = await table.getRecordById(selection.recordId);
+    const fields = record.fields;
+
+    const customerName = getText(fields['Customer Name']);
+    const orderNumber  = getText(fields['Order Number']);
+    const submissionNum = getText(fields['Submission #']);
+    const serviceLevel = getText(fields['Service Level']);
+    const numCards     = getText(fields['# of cards']);
+
+    document.getElementById('avatar').textContent = initials(customerName);
+    document.getElementById('customer-name').textContent = customerName;
+    document.getElementById('order-sub').textContent = `Order #${orderNumber} · Sub #${submissionNum}`;
+    document.getElementById('service-level').textContent = serviceLevel;
+    document.getElementById('num-cards').textContent = numCards;
+    document.getElementById('submission-num').textContent = submissionNum;
+
+    messageText = buildMessage({ customerName, orderNumber, submissionNum, serviceLevel, numCards });
+    document.getElementById('message-preview').textContent = messageText;
+
+    // Try load photo
+    const photoVal = fields['Card Photo'];
+    if (photoVal && Array.isArray(photoVal) && photoVal.length > 0) {
+      try {
+        const token = photoVal[0].token || photoVal[0].file_token;
+        const url = await table.getAttachmentUrl(token);
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = 'Card photo';
+        const area = document.getElementById('photo-area');
+        area.innerHTML = '';
+        area.appendChild(img);
+      } catch(pe) {
+        console.warn('Photo load failed:', pe);
+      }
+    }
+
     document.getElementById('loading').style.display = 'none';
-    document.getElementById('error-area').innerHTML = `<div class="error">${msg}</div>`;
     document.getElementById('content').style.display = 'block';
-  }
 
-  function sendToWhatsApp() {
-    if (!messageText) return;
-    const encoded = encodeURIComponent(messageText);
-    // Opens WhatsApp with pre-typed message (works on mobile and desktop)
-    window.open(`https://wa.me/?text=${encoded}`, '_blank');
+  } catch(err) {
+    console.error(err);
+    showError('Could not load record.<br><br><strong>Make sure:</strong><br>1. This extension is added to your Submission Master Base<br>2. You clicked on a customer record first<br><br><small>' + err.message + '</small>');
   }
+}
 
-  function copyMessage() {
-    if (!messageText) return;
-    navigator.clipboard.writeText(messageText).then(() => {
-      const btn = document.getElementById('copy-btn');
-      btn.textContent = '✅ Copied!';
-      btn.classList.add('copied');
-      setTimeout(() => {
-        btn.textContent = '📋 Copy message text';
-        btn.classList.remove('copied');
-      }, 2000);
-    });
-  }
+function sendToWhatsApp() {
+  const text = messageText || 'No record loaded';
+  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+}
 
-  // Init
-  loadRecord();
+function copyMessage() {
+  if (!messageText) return;
+  navigator.clipboard.writeText(messageText).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '📋 Copy message text';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+// Start
+loadRecord();
 </script>
-
 </body>
 </html>
